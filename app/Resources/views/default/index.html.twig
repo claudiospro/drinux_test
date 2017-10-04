@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	{{dump(lista)}}
+    <a href="{{path('admin_directorio_add')}}">
+    Nuevo
+    </a>	
+    <table class="table hover">
+      <thead>
+        <tr>
+            <th>Nombre y Apellidos</th>
+            <th>Edad</th>
+            <th>Direccion</th>
+			<th>Teléfono</th>
+			<th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+		  {% for row in lista %}
+			  <tr>
+			  <td>{{ row.nombre }} {{ row.apellidos }}</td>
+			  <td>{{ row.edad }}</td>
+			  <td>{{ row.direccion }}</td>
+			  <td>{{ row.telefono }}</td>
+			  <td>
+                  <a href="{{path('admin_directorio_edit', {'id': row.id})}}">
+                      Editar
+                  </a>
+					  |
+                  <a href="{{path('admin_directorio_delete', {'id': row.id})}}">
+                      Eliminar
+                  </a>					  
+			  </td>
+			  </tr>
+		  {% endfor %}
+	  </tbody>
+	</table>
+	  
+
+{% endblock %}
+
+{% block stylesheets %}
+{% endblock %}
